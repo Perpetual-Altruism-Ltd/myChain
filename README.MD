@@ -6,11 +6,13 @@ compile with
 Generate new user for chain admin
 `./target/debug/myChain-node key generate --scheme Sr25519 --password-interactive`
 
-Modify chain specification in the JSON created by this command. Includes account perms
+Modify chain specification in the JSON created by this command. Includes account perms:
+
 `./target/debug/myChain-node build-spec --disable-default-bootnode --chain local > customSpec.json`
 
 
-Start first node
+Start first node:
+
 `./target/debug/myChain-node \
 --base-path /tmp/myChain01 \
 --chain ./customSpecRaw.json \
@@ -22,7 +24,9 @@ Start first node
 --name MyNode01 \
 --validator`
 
-Add additional node
+
+Add additional node:
+
 `./target/debug/myChain-node \
 --base-path /tmp/myChain02 \
 --chain ./customSpecRaw.json \
@@ -35,7 +39,9 @@ Add additional node
 --bootnodes /ip4/127.0.0.1/tcp/30333/p2p/ //ADD MASTER NODE IDENTIFIER HERE`
 
 
+
 ChainID: 55555
+
 Default http: 127.0.0.1:9933
 
 for help run `./target/debug/myChain-node --help`
