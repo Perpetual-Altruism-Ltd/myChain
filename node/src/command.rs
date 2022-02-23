@@ -38,7 +38,7 @@ impl SubstrateCli for Cli {
 	}
 
 	fn author() -> String {
-		" the team at myNFT.com".into()
+		"the team at myNFT.com".into()
 	}
 
 	fn support_url() -> String {
