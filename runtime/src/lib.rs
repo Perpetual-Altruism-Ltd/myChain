@@ -284,7 +284,7 @@ impl<F: FindAuthor<u32>> FindAuthor<H160> for FindAuthorTruncated<F> {
 
 parameter_types! {
 	pub const ChainId: u64 = 55555;
-	pub BlockGasLimit: U256 = U256::from(u32::max_value());
+	pub BlockGasLimit: U256 = U256::from(U256::max_value());
 }
 
 impl pallet_evm::Config for Runtime {
