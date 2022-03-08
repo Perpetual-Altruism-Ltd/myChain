@@ -10,49 +10,30 @@ Generate new user for chain admin
 ## Start first node:
 
 `./target/debug/myChain-node \
-
 --base-path /tmp/node01 \
-
 --chain ./customSpecRaw.json \
-
 --port 30333 \
-
 --ws-port 9945 \
-
 --rpc-port 9933 \
-
 --telemetry-url "ws://cennznet-telemetry.centrality.me:8000/submit 0" \
-
 --rpc-methods Unsafe \
-
 --name MyNode01 \
-
 --validator`
 
 
 ### Add additional node:
 
 `./target/debug/myChain-node \
-
---base-path /tmp/node02 \
-
---chain local \
-
+--base-path /tmp/node11 \
+--chain ./myChainRaw.json \
 --port 30334 \
-
 --ws-port 9946 \
-
 --rpc-port 9934 \
-
 --telemetry-url "ws://cennznet-telemetry.centrality.me:8000/submit 0" \
-
 --validator \
-
 --rpc-methods Unsafe \
-
---name MyNode02 \
-
---bootnodes /ip4/127.0.0.1/tcp/30333/p2p/ //ADD MASTER NODE IDENTIFIER HERE`
+--name MyNode11 \
+--bootnodes /ip4/18.170.68.24/tcp/30333/p2p/12D3KooWBjaKUwjTQoEoz4z5RqcvoerAHKEwbpji93v1kjM8QtA7`
 
 
 ### ADD KEYS
