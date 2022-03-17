@@ -48,6 +48,10 @@ use pallet_transaction_payment::CurrencyAdapter;
 pub use sp_runtime::BuildStorage;
 pub use sp_runtime::{Perbill, Permill};
 
+/// Importing the file with the custom precompiles.
+mod precompiles;
+use precompiles::{SampleMyChainPrecompile};
+
 /// Type of block number.
 pub type BlockNumber = u32;
 
@@ -306,6 +310,7 @@ impl pallet_evm::Config for Runtime {
 		pallet_evm_precompile_simple::ECRecoverPublicKey,
 		pallet_evm_precompile_sha3fips::Sha3FIPS256,
 		pallet_evm_precompile_sha3fips::Sha3FIPS512,
+		SampleMyChainPrecompile
 	);
 	type ChainId = ChainId;
 	type BlockGasLimit = BlockGasLimit;
