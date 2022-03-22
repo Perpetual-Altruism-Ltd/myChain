@@ -1,5 +1,6 @@
 //! Substrate Node Template CLI library.
 #![warn(missing_docs)]
+#![allow(non_snake_case)]
 
 mod chain_spec;
 #[macro_use]
