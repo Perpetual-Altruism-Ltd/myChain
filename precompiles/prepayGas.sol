@@ -18,8 +18,16 @@ contract feeLess {
       whiteList[owner] = true;
     }
 
-    function fund() public payable { 
+    fallback() external payable { 
       balance = balance + msg.value;
+    }
+
+    receive() external payable {
+        balance = balance + msg.value;
+    }
+
+    function readBalance() public view returns (uint256){
+        return balance;
     }
 
     function withdraw(uint256 amount) public {
