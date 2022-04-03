@@ -59,6 +59,11 @@ std = [
     'frame-benchmarking/std',
     'frame-system-benchmarking/std',
 ]
+
+[dependencies.prepay-gas]
+default-features = false
+path = '../precompiles/prepay-gas'
+
 [dependencies.codec]
 default-features = false
 features = ['derive']

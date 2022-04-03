@@ -1,0 +1,16 @@
+[package]
+name = "utils"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies.primitive-types]
+version = "0.11"
+default-features = false
+
+[dependencies.pallet-evm]
+default-features = false
+git = 'https://github.com/paritytech/frontier.git'
+rev = '0b962f218f0cdd796dadfe26c3f09e68f7861b26'
+
+[dependencies]
+evm = { version = "0.35.0", default-features = false, features = ["with-codec"] }
