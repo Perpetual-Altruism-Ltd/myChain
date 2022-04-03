@@ -1,6 +1,5 @@
 
 use std::process::ExitStatus;
-
 use pallet_evm::{ExitError, ExitSucceed};
 use utils::{Context, PrecompileOutput, Gasometer};
 use evm_precompiles::EvmDataWriter;
