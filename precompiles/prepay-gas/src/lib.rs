@@ -1,25 +1,26 @@
 
-use std::process::ExitStatus;
-use pallet_evm::{ExitError, ExitSucceed};
-use utils::{Context, PrecompileOutput, Gasometer};
-use evm_precompiles::EvmDataWriter;
+use evm_precompiles::{Gasometer, EvmDataWriter};
+use evm::{executor::stack::PrecompileOutput, Context, ExitSucceed, ExitError};
+
 
 pub trait Precompile {
 	fn execute(
 		input: &[u8],
 		target_gas: Option<u64>,
 		context: &Context,
-	) -> Result< (PrecompileOutput, Vec<u8>), ExitError>;
+		gasometer: &mut Gasometer,
+	) -> Result<PrecompileOutput, ExitError>;
 }
 
 pub struct TestPC1;
 
 impl Precompile for TestPC1 {
 	fn execute(
-        input: &[u8], 
-        target_gas: Option<u64>, 
-        context: &Context
-    ) -> Result< (PrecompileOutput, Vec<u8>), ExitError>{
+        _input: &[u8], 
+        _target_gas: Option<u64>, 
+        _context: &Context,
+		gasometer: &mut Gasometer,
+    ) -> Result<PrecompileOutput, ExitError>{
 
 		let message: &str = "Hello, World from MyChain!";
 		let result: Vec<u8> = message.as_bytes().to_vec();
@@ -27,9 +28,9 @@ impl Precompile for TestPC1 {
 		Ok(PrecompileOutput {
 			exit_status: ExitSucceed::Returned,
 			cost: gasometer.used_gas(),
-			output: EvmDataWriter::new().write(is_contributor).build(),
+			output: EvmDataWriter::new().write(result).build(),
 			logs: Default::default()
-		}, result)
+		})
 	}
 }
 
