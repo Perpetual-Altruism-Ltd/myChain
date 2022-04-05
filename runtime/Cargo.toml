@@ -218,3 +218,6 @@ default-features = false
 git = 'https://github.com/paritytech/substrate'
 [build-dependencies.substrate-wasm-builder]
 git = 'https://github.com/paritytech/substrate'
+
+[dependencies]
+getrandom = { version = "0.2", features = ["js"] }
