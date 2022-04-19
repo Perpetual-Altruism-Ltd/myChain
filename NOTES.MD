@@ -33,7 +33,7 @@ Generate new user for chain admin
 --validator \
 --rpc-methods Unsafe \
 --name MyNode11 \
---bootnodes /ip4/18.170.68.24/tcp/30333/p2p/12D3KooWBjaKUwjTQoEoz4z5RqcvoerAHKEwbpji93v1kjM8QtA7`
+--bootnodes /ip4/18.130.42.208/tcp/30333/p2p/12D3KooWBjaKUwjTQoEoz4z5RqcvoerAHKEwbpji93v1kjM8QtA7`
 
 
 ### ADD KEYS

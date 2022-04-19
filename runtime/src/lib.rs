@@ -52,7 +52,8 @@ pub use sp_runtime::{Perbill, Permill};
 //mod precompiles;
 //use precompiles::{SampleMyChainPrecompile};
 
-use prepay_gas::TestPC1;
+mod precompiles;
+use precompiles::MyChainPrecompiles;
 
 /// Type of block number.
 pub type BlockNumber = u32;
@@ -291,6 +292,7 @@ impl<F: FindAuthor<u32>> FindAuthor<H160> for FindAuthorTruncated<F> {
 parameter_types! {
 	pub const ChainId: u64 = 55555;
 	pub BlockGasLimit: U256 = U256::from(U256::max_value());
+	pub PrecompilesValue: MyChainPrecompiles<Runtime> = MyChainPrecompiles::<_>::new();
 }
 
 impl pallet_evm::Config for Runtime {
@@ -303,18 +305,8 @@ impl pallet_evm::Config for Runtime {
 	type Currency = Balances;
 	type Event = Event;
 	type Runner = pallet_evm::runner::stack::Runner<Self>;
-	type Precompiles = (
-		pallet_evm_precompile_simple::ECRecover,
-		pallet_evm_precompile_simple::Sha256,
-		pallet_evm_precompile_simple::Ripemd160,
-		pallet_evm_precompile_simple::Identity,
-		pallet_evm_precompile_modexp::Modexp,
-		pallet_evm_precompile_simple::ECRecoverPublicKey,
-		pallet_evm_precompile_sha3fips::Sha3FIPS256,
-		pallet_evm_precompile_sha3fips::Sha3FIPS512,
-		//SampleMyChainPrecompile
-		TestPC1
-	);
+    type PrecompilesType = MyChainPrecompiles<Self>;
+    type PrecompilesValue = PrecompilesValue;
 	type ChainId = ChainId;
 	type BlockGasLimit = BlockGasLimit;
 	type OnChargeTransaction = ();
