@@ -9,9 +9,9 @@ default-features = false
 version = '0.35.0'
 
 [dependencies.serde]
-features = ["derive"]
+features = ['derive']
 optional = true
-version = '1.0.101'
+version = '1.0.136'
 
 [dependencies.codec]
 default-features = false
@@ -20,10 +20,11 @@ version = "3.0.0"
 
 [dependencies.sp-core]
 default-features = false
-git = 'https://github.com/paritytech/substrate'
+git = 'https://github.com/purestake/substrate'
+branch = "moonbeam-polkadot-v0.9.18"
 
 [dependencies.sp-std]
 default-features = false
-git = "https://github.com/paritytech/substrate"
+git = 'https://github.com/purestake/substrate'
 version = "4.0.0"
 branch = "master"

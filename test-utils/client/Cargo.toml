@@ -15,24 +15,26 @@ path = '../../runtime'
 
 [dependencies.sc-client-api]
 branch = 'frontier'
-git = 'https://github.com/paritytech/substrate.git'
+git = 'https://github.com/purestake/substrate'
 
 [dependencies.sc-consensus]
 branch = 'frontier'
-git = 'https://github.com/paritytech/substrate.git'
+git = 'https://github.com/purestake/substrate'
 
 [dependencies.sc-executor]
 branch = 'frontier'
-git = 'https://github.com/paritytech/substrate.git'
+git = 'https://github.com/purestake/substrate'
 
 [dependencies.sp-api]
-branch = 'frontier'
-git = 'https://github.com/paritytech/substrate.git'
+default-features = false
+git = 'https://github.com/purestake/substrate'
+branch = "moonbeam-polkadot-v0.9.18"
 
 [dependencies.sp-runtime]
-branch = 'frontier'
-git = 'https://github.com/paritytech/substrate.git'
+default-features = false
+git = 'https://github.com/purestake/substrate'
+branch = "moonbeam-polkadot-v0.9.18"
 
 [dependencies.substrate-test-client]
 branch = 'frontier'
-git = 'https://github.com/paritytech/substrate.git'
+git = 'https://github.com/purestake/substrate'

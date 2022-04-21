@@ -42,11 +42,11 @@ where
     ) -> Option<PrecompileResult> {
         match address {
             // Ethereum precompiles :
-            a if a == hash(1) => Some(ECRecover::execute(input, target_gas, context)),
-            a if a == hash(2) => Some(Sha256::execute(input, target_gas, context)),
-            a if a == hash(3) => Some(Ripemd160::execute(input, target_gas, context)),
-            a if a == hash(4) => Some(Identity::execute(input, target_gas, context)),
-            a if a == hash(5) => Some(Modexp::execute(input, target_gas, context)),
+            a if a == hash(1) => Some(ECRecover::execute(input, target_gas, context, is_static)),
+            a if a == hash(2) => Some(Sha256::execute(input, target_gas, context, is_static)),
+            a if a == hash(3) => Some(Ripemd160::execute(input, target_gas, context, is_static)),
+            a if a == hash(4) => Some(Identity::execute(input, target_gas, context, is_static)),
+            a if a == hash(5) => Some(Modexp::execute(input, target_gas, context, is_static)),
 
             // MyChain specific :
             a if a == hash(51) => Some(TestPC1::execute(
@@ -55,10 +55,10 @@ where
 
             // Non-MyChain specific nor Ethereum precompiles :
             a if a == hash(1024) => {
-                Some(Sha3FIPS256::execute(input, target_gas, context))
+                Some(Sha3FIPS256::execute(input, target_gas, context, is_static))
             }
             a if a == hash(1025) => Some(ECRecoverPublicKey::execute(
-                input, target_gas, context,
+                input, target_gas, context, is_static
             )),
             _ => None,
         }
