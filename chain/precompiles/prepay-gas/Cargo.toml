@@ -1,0 +1,13 @@
+[package]
+name = "prepay-gas"
+version = "0.1.0"
+edition = "2021"
+
+
+[dependencies.evm-precompiles]
+default-features = false
+version = '0.2.1'
+
+[dependencies]
+fp-evm = { path = "../../../primitives/evm", default-features = false }
+pallet-evm = { path = "../../../frame/evm", default-features = false }
