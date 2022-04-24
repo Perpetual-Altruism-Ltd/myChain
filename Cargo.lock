@@ -2189,6 +2189,15 @@ dependencies = [
 ]
 
 [[package]]
+name = "gasometer"
+version = "0.1.0"
+dependencies = [
+ "fp-evm",
+ "pallet-evm",
+ "sp-core",
+]
+
+[[package]]
 name = "gcc"
 version = "0.3.55"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -4967,6 +4976,7 @@ name = "prepay-gas"
 version = "0.1.0"
 dependencies = [
  "fp-evm",
+ "gasometer",
  "pallet-evm",
 ]
 
