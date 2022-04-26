@@ -1,6 +1,7 @@
 use fp_evm::{Context, ExitSucceed, PrecompileOutput, PrecompileFailure};
 use pallet_evm::Precompile;
 use gasometer::Gasometer;
+use evmdata::EvmDataWriter;
 
 pub struct TestPC1;
 
@@ -21,7 +22,7 @@ impl Precompile for TestPC1 {
 		Ok(PrecompileOutput {
 			exit_status: ExitSucceed::Returned,
 			cost: gasometer.used_gas(),
-			output: result,
+			output: EvmDataWriter::new().write(result).build(),
 			logs: Default::default()
 		})
 	}

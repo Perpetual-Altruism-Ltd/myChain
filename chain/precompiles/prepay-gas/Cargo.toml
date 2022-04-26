@@ -6,4 +6,5 @@ edition = "2021"
 [dependencies]
 fp-evm = { path = "../../../primitives/evm", default-features = false }
 pallet-evm = { path = "../../../frame/evm", default-features = false }
-gasometer = {path = "../gasometer", default-featuers = false}
+gasometer = {path = "../utils/gasometer", default-featuers = false}
+evmdata = {path = "../utils/evmdata", default-features = false}
