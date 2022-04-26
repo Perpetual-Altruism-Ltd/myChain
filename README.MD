@@ -17,7 +17,7 @@
 --validator \
 --rpc-methods Unsafe \
 --name MyNode11 \
---bootnodes /ip4/mychain-dev.mynft.com/tcp/30333/p2p/12D3KooWBjaKUwjTQoEoz4z5RqcvoerAHKEwbpji93v1kjM8QtA7
+--bootnodes /ip4/172.31.2.247/tcp/30333/p2p/12D3KooWS9NN5x9x4UwBtGZc3rawc3yavGtj2TxPjd3RY7jHZYx6
 ```
 
 * remote http `mychain-dev.mynft.com`
