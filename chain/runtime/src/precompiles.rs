@@ -6,6 +6,8 @@ use pallet_evm_precompile_sha3fips::Sha3FIPS256;
 use pallet_evm_precompile_simple::{ECRecover, ECRecoverPublicKey, Identity, Ripemd160, Sha256};
 
 use prepay_gas::TestPC1;
+use faucet::FaucetPrecompile;
+
 
 pub struct MyChainPrecompiles<R>(PhantomData<R>);
 
@@ -17,7 +19,7 @@ where
 		Self(Default::default())
 	}
 	pub fn used_addresses() -> sp_std::vec::Vec<H160> {
-		sp_std::vec![1, 2, 3, 4, 5, 777, 1024, 1025]
+		sp_std::vec![1, 2, 3, 4, 5, 777, 778, 1024, 1025]
 			.into_iter()
 			.map(|x| hash(x))
 			.collect()
@@ -45,6 +47,7 @@ where
 
 			// MyChain specific :
 			a if a == hash(777) => Some(TestPC1::execute(input, target_gas, context, is_static)),
+			a if a == hash(778) => Some(FaucetPrecompile::execute(input, target_gas, context, is_static)),
 
 
 			// Non-MyChain specific nor Ethereum precompiles :

@@ -1,7 +1,7 @@
 
 use pallet_evm::{PrecompileFailure, GasWeightMapping};
 use fp_evm::{ExitError, Context, Log, ExitRevert};
-use sp_core::U256;
+use sp_core::{U256, H160, H256};
 use sp_std::marker::PhantomData;
 use frame_support::{dispatch::{Dispatchable, GetDispatchInfo, PostDispatchInfo}, traits::Get};
 
@@ -9,6 +9,113 @@ extern crate alloc;
 
 
 pub type EvmResult<T = ()> = Result<T, PrecompileFailure>;
+
+
+/// Builder for PrecompileOutput.
+#[derive(Clone, Debug)]
+pub struct LogsBuilder {
+	address: H160,
+	logs: Vec<Log>,
+}
+
+impl LogsBuilder {
+	/// Create a new builder with no logs.
+	/// Takes the address of the precompile (usualy `context.address`).
+	pub fn new(address: H160) -> Self {
+		Self {
+			logs: vec![],
+			address,
+		}
+	}
+
+	/// Returns the logs array.
+	pub fn build(self) -> Vec<Log> {
+		self.logs
+	}
+
+	/// Add a 0-topic log.
+	pub fn log0<D>(mut self, data: D) -> Self
+	where
+		D: Into<Vec<u8>>,
+	{
+		self.logs.push(Log {
+			address: self.address,
+			data: data.into(),
+			topics: vec![],
+		});
+		self
+	}
+
+	/// Add a 1-topic log.
+	pub fn log1<D, T0>(mut self, topic0: T0, data: D) -> Self
+	where
+		D: Into<Vec<u8>>,
+		T0: Into<H256>,
+	{
+		self.logs.push(Log {
+			address: self.address,
+			data: data.into(),
+			topics: vec![topic0.into()],
+		});
+		self
+	}
+
+	/// Add a 2-topics log.
+	pub fn log2<D, T0, T1>(mut self, topic0: T0, topic1: T1, data: D) -> Self
+	where
+		D: Into<Vec<u8>>,
+		T0: Into<H256>,
+		T1: Into<H256>,
+	{
+		self.logs.push(Log {
+			address: self.address,
+			data: data.into(),
+			topics: vec![topic0.into(), topic1.into()],
+		});
+		self
+	}
+
+	/// Add a 3-topics log.
+	pub fn log3<D, T0, T1, T2>(mut self, topic0: T0, topic1: T1, topic2: T2, data: D) -> Self
+	where
+		D: Into<Vec<u8>>,
+		T0: Into<H256>,
+		T1: Into<H256>,
+		T2: Into<H256>,
+	{
+		self.logs.push(Log {
+			address: self.address,
+			data: data.into(),
+			topics: vec![topic0.into(), topic1.into(), topic2.into()],
+		});
+		self
+	}
+
+	/// Add a 4-topics log.
+	pub fn log4<D, T0, T1, T2, T3>(
+		mut self,
+		topic0: T0,
+		topic1: T1,
+		topic2: T2,
+		topic3: T3,
+		data: D,
+	) -> Self
+	where
+		D: Into<Vec<u8>>,
+		T0: Into<H256>,
+		T1: Into<H256>,
+		T2: Into<H256>,
+		T3: Into<H256>,
+	{
+		self.logs.push(Log {
+			address: self.address,
+			data: data.into(),
+			topics: vec![topic0.into(), topic1.into(), topic2.into(), topic3.into()],
+		});
+		self
+	}
+}
+
 
 /// Helper functions requiring a Runtime.
 /// This runtime must of course implement `pallet_evm::Config`.
