@@ -2204,8 +2204,11 @@ name = "gasometer"
 version = "0.1.0"
 dependencies = [
  "fp-evm",
+ "frame-support",
+ "frame-system",
  "pallet-evm",
  "sp-core",
+ "sp-std",
 ]
 
 [[package]]
