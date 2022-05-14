@@ -11,13 +11,9 @@ publish = false
 [package.metadata.docs.rs]
 targets = ["x86_64-unknown-linux-gnu"]
 
-[dependencies.prepay-gas]
-defualt-features = false
-path = '../precompiles/prepay-gas'
-
-[dependencies.faucet]
+[dependencies.example]
 default-features = false
-path = '../precompiles/faucet'
+path = '../precompiles/example'
 
 [dependencies]
 getrandom = { version = "0.2", features = ["js"] }

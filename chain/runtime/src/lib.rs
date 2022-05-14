@@ -314,7 +314,7 @@ impl pallet_evm::GasWeightMapping for MyChainGasWeightMapping {
 
 parameter_types! {
 	pub const ChainId: u64 = 7777777;
-	pub BlockGasLimit: U256 = U256::from(u64::max_value());
+	pub BlockGasLimit: U256 = U256::from(u32::max_value());
 	pub PrecompilesValue: MyChainPrecompiles<Runtime> = MyChainPrecompiles::<_>::new();
 }
 

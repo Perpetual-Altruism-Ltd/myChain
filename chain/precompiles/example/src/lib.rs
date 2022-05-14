@@ -8,19 +8,6 @@ use sp_std::marker::PhantomData;
 use FunctionSelector::keccak256;
 
 
-pub const SELECTOR_LOG_DEPOSIT: [u8; 32] = keccak256!("Deposit(address,uint256)");
-
-/// Associates pallet Instance to a prefix used for the Approves storage.
-/// This trait is implemented for () and the 16 substrate Instance.
-pub trait InstanceToPrefix {
-	type ApprovesPrefix: StorageInstance;
-	type NoncesPrefix: StorageInstance;
-}
-
-pub type BalanceOf<Runtime, Instance = ()> =
-	<Runtime as pallet_balances::Config<Instance>>::Balance;
-
-
 #[FunctionSelector::generate_function_selector]
 enum Action {
 	Deposit = "deposit(address,uint256)",
@@ -29,9 +16,9 @@ enum Action {
 }
 
 
-pub struct FaucetPrecompile;
+pub struct ExamplePrecompile;
 	
-impl Precompile for FaucetPrecompile {
+impl Precompile for ExamplePrecompile {
 	fn execute(
         input: &[u8], 
         target_gas: Option<u64>, 
@@ -66,7 +53,7 @@ impl Precompile for FaucetPrecompile {
 	}
 }
 
-impl FaucetPrecompile {
+impl ExamplePrecompile {
 
 	fn deposit(
 		_: &mut EvmDataReader,

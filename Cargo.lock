@@ -1500,6 +1500,24 @@ dependencies = [
 ]
 
 [[package]]
+name = "example"
+version = "0.1.0"
+dependencies = [
+ "FunctionSelector",
+ "evmdata",
+ "fp-evm",
+ "frame-support",
+ "gasometer",
+ "num_enum",
+ "pallet-balances",
+ "pallet-evm",
+ "pallet-timestamp",
+ "sp-core",
+ "sp-runtime",
+ "sp-std",
+]
+
+[[package]]
 name = "exit-future"
 version = "0.2.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -1527,24 +1545,6 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "b394ed3d285a429378d3b384b9eb1285267e7df4b166df24b7a6939a04dc392e"
 dependencies = [
  "instant",
-]
-
-[[package]]
-name = "faucet"
-version = "0.1.0"
-dependencies = [
- "FunctionSelector",
- "evmdata",
- "fp-evm",
- "frame-support",
- "gasometer",
- "num_enum",
- "pallet-balances",
- "pallet-evm",
- "pallet-timestamp",
- "sp-core",
- "sp-runtime",
- "sp-std",
 ]
 
 [[package]]
@@ -2006,7 +2006,7 @@ dependencies = [
 name = "frontier-template-runtime"
 version = "0.0.0"
 dependencies = [
- "faucet",
+ "example",
  "fp-rpc",
  "fp-self-contained",
  "frame-benchmarking",
@@ -2032,7 +2032,6 @@ dependencies = [
  "pallet-transaction-payment",
  "pallet-transaction-payment-rpc-runtime-api",
  "parity-scale-codec",
- "prepay-gas",
  "scale-info",
  "serde",
  "sp-api",
@@ -5034,16 +5033,6 @@ name = "ppv-lite86"
 version = "0.2.10"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "ac74c624d6b2d21f425f752262f42188365d7b8ff1aff74c82e45136510a4857"
-
-[[package]]
-name = "prepay-gas"
-version = "0.1.0"
-dependencies = [
- "evmdata",
- "fp-evm",
- "gasometer",
- "pallet-evm",
-]
 
 [[package]]
 name = "primitive-types"

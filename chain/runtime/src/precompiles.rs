@@ -5,8 +5,7 @@ use pallet_evm_precompile_modexp::Modexp;
 use pallet_evm_precompile_sha3fips::Sha3FIPS256;
 use pallet_evm_precompile_simple::{ECRecover, ECRecoverPublicKey, Identity, Ripemd160, Sha256};
 
-use prepay_gas::TestPC1;
-use faucet::FaucetPrecompile;
+use example::ExamplePrecompile;
 
 
 pub struct MyChainPrecompiles<R>(PhantomData<R>);
@@ -46,8 +45,7 @@ where
 			a if a == hash(5) => Some(Modexp::execute(input, target_gas, context, is_static)),
 
 			// MyChain specific :
-			a if a == hash(777) => Some(TestPC1::execute(input, target_gas, context, is_static)),
-			a if a == hash(778) => Some(FaucetPrecompile::execute(input, target_gas, context, is_static)),
+			a if a == hash(777) => Some(ExamplePrecompile::execute(input, target_gas, context, is_static)),
 
 
 			// Non-MyChain specific nor Ethereum precompiles :
