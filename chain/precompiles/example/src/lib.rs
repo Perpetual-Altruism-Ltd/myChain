@@ -8,13 +8,16 @@ use sp_std::marker::PhantomData;
 use FunctionSelector::keccak256;
 
 
+//EXAMPLE PRECOMPILE
+
+//Use this as a template
+
 #[FunctionSelector::generate_function_selector]
 enum Action {
 	Deposit = "deposit(address,uint256)",
 	Withdraw = "withdraw(uint256,address)",
 	UpdateWhitelist = "updatewhitelist(address,bool)"
 }
-
 
 pub struct ExamplePrecompile;
 	

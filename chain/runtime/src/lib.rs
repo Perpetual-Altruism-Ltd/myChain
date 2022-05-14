@@ -301,6 +301,7 @@ impl<F: FindAuthor<u32>> FindAuthor<H160> for FindAuthorTruncated<F> {
 
 pub const GAS_PER_SECOND: u64 = 40_000_000;
 pub const WEIGHT_PER_GAS: u64 = WEIGHT_PER_SECOND / GAS_PER_SECOND;
+pub const MAXIMUM_BLOCK_WEIGHT: Weight = WEIGHT_PER_SECOND / 2;
 pub struct MyChainGasWeightMapping;
 
 impl pallet_evm::GasWeightMapping for MyChainGasWeightMapping {
@@ -314,7 +315,7 @@ impl pallet_evm::GasWeightMapping for MyChainGasWeightMapping {
 
 parameter_types! {
 	pub const ChainId: u64 = 7777777;
-	pub BlockGasLimit: U256 = U256::from(u32::max_value());
+	pub BlockGasLimit: U256 = U256::from(NORMAL_DISPATCH_RATIO * MAXIMUM_BLOCK_WEIGHT / WEIGHT_PER_GAS);
 	pub PrecompilesValue: MyChainPrecompiles<Runtime> = MyChainPrecompiles::<_>::new();
 }
 
