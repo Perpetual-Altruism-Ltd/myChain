@@ -1,11 +1,8 @@
-
-use frame_support::{traits::StorageInstance, weights::{GetDispatchInfo, PostDispatchInfo}, dispatch::Dispatchable};
 use fp_evm::{Context, ExitSucceed, PrecompileOutput, PrecompileFailure, Precompile};
-use gasometer::{Gasometer, FunctionModifier, RuntimeHelper, EvmResult, LogsBuilder};
-use evmdata::{EvmDataWriter, EvmDataReader};
-use sp_core::U256;
-use sp_std::marker::PhantomData;
-use FunctionSelector::keccak256;
+use gasometer::{Gasometer, FunctionModifier, EvmResult};
+use evmdata::EvmDataReader;
+
+//use FunctionSelector::keccak256;
 
 
 //EXAMPLE PRECOMPILE
@@ -61,7 +58,7 @@ impl ExamplePrecompile {
 	fn deposit(
 		_: &mut EvmDataReader,
 		gasometer: &mut Gasometer,
-		context: &Context
+		_context: &Context
 	) -> EvmResult<PrecompileOutput> {
 		
 		//logic
@@ -78,7 +75,7 @@ impl ExamplePrecompile {
 	fn withdraw(
 		_: &mut EvmDataReader,
 		gasometer: &mut Gasometer,
-		context: &Context
+		_context: &Context
 	)-> EvmResult<PrecompileOutput> {
 
 		//logic
@@ -94,7 +91,7 @@ impl ExamplePrecompile {
 	fn updatewhitelist(
 		_: &mut EvmDataReader,
 		gasometer: &mut Gasometer,
-		context: &Context
+		_context: &Context
 	)-> EvmResult<PrecompileOutput> {
 
 		//logic

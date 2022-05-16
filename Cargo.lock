@@ -1506,15 +1506,12 @@ dependencies = [
  "FunctionSelector",
  "evmdata",
  "fp-evm",
- "frame-support",
  "gasometer",
  "num_enum",
  "pallet-balances",
  "pallet-evm",
  "pallet-timestamp",
- "sp-core",
  "sp-runtime",
- "sp-std",
 ]
 
 [[package]]
