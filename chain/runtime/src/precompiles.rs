@@ -1,14 +1,16 @@
 use pallet_evm::{Context, Precompile, PrecompileResult, PrecompileSet};
 use sp_core::H160;
 use sp_std::marker::PhantomData;
-
 use pallet_evm_precompile_modexp::Modexp;
 use pallet_evm_precompile_sha3fips::Sha3FIPS256;
 use pallet_evm_precompile_simple::{ECRecover, ECRecoverPublicKey, Identity, Ripemd160, Sha256};
 
-pub struct FrontierPrecompiles<R>(PhantomData<R>);
+use example::ExamplePrecompile;
 
-impl<R> FrontierPrecompiles<R>
+
+pub struct MyChainPrecompiles<R>(PhantomData<R>);
+
+impl<R> MyChainPrecompiles<R>
 where
 	R: pallet_evm::Config,
 {
@@ -16,13 +18,13 @@ where
 		Self(Default::default())
 	}
 	pub fn used_addresses() -> sp_std::vec::Vec<H160> {
-		sp_std::vec![1, 2, 3, 4, 5, 1024, 1025]
+		sp_std::vec![1, 2, 3, 4, 5, 777, 778, 1024, 1025]
 			.into_iter()
 			.map(|x| hash(x))
 			.collect()
 	}
 }
-impl<R> PrecompileSet for FrontierPrecompiles<R>
+impl<R> PrecompileSet for MyChainPrecompiles<R>
 where
 	R: pallet_evm::Config,
 {
@@ -41,7 +43,12 @@ where
 			a if a == hash(3) => Some(Ripemd160::execute(input, target_gas, context, is_static)),
 			a if a == hash(4) => Some(Identity::execute(input, target_gas, context, is_static)),
 			a if a == hash(5) => Some(Modexp::execute(input, target_gas, context, is_static)),
-			// Non-Frontier specific nor Ethereum precompiles :
+
+			// MyChain specific :
+			a if a == hash(777) => Some(ExamplePrecompile::execute(input, target_gas, context, is_static)),
+
+
+			// Non-MyChain specific nor Ethereum precompiles :
 			a if a == hash(1024) => {
 				Some(Sha3FIPS256::execute(input, target_gas, context, is_static))
 			}
