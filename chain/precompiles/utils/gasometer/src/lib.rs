@@ -1,11 +1,14 @@
 
+#![cfg_attr(not(feature = "std"), no_std)]
+
 use pallet_evm::{PrecompileFailure, GasWeightMapping};
 use fp_evm::{ExitError, Context, Log, ExitRevert};
 use sp_core::{U256, H160, H256};
-use sp_std::marker::PhantomData;
+use sp_std::{marker::PhantomData, vec, vec::Vec};
 use frame_support::{dispatch::{Dispatchable, GetDispatchInfo, PostDispatchInfo}, traits::Get};
 
 extern crate alloc;
+use crate::alloc::borrow::ToOwned;
 
 
 pub type EvmResult<T = ()> = Result<T, PrecompileFailure>;

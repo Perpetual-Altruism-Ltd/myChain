@@ -1486,6 +1486,7 @@ dependencies = [
  "log",
  "num_enum",
  "sp-core",
+ "sp-std",
 ]
 
 [[package]]

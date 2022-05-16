@@ -1,3 +1,4 @@
+#![cfg_attr(not(feature = "std"), no_std)]
 use fp_evm::{Context, ExitSucceed, PrecompileOutput, PrecompileFailure, Precompile};
 use gasometer::{Gasometer, FunctionModifier, EvmResult};
 use evmdata::EvmDataReader;

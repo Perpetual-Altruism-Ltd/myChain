@@ -1,6 +1,8 @@
+#![cfg_attr(not(feature = "std"), no_std)]
 
 use gasometer::{EvmResult, Gasometer};
 use sp_core::{U256, H256, H160, Bytes};
+use sp_std::{vec, vec::Vec};
 use core::{any::type_name, ops::Range};
 use impl_trait_for_tuples::impl_for_tuples;
 
