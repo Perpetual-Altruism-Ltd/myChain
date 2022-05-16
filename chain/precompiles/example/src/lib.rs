@@ -6,10 +6,9 @@ use evmdata::EvmDataReader;
 
 
 //EXAMPLE PRECOMPILE
-
 //Use this as a template
 
-#[FunctionSelector::generate_function_selector]
+#[functionselector::generate_function_selector]
 enum Action {
 	Deposit = "deposit(address,uint256)",
 	Withdraw = "withdraw(uint256,address)",

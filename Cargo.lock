@@ -3,17 +3,6 @@
 version = 3
 
 [[package]]
-name = "FunctionSelector"
-version = "0.1.0"
-dependencies = [
- "num_enum",
- "proc-macro2",
- "quote",
- "sha3 0.8.2",
- "syn",
-]
-
-[[package]]
 name = "Inflector"
 version = "0.11.4"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -1503,9 +1492,9 @@ dependencies = [
 name = "example"
 version = "0.1.0"
 dependencies = [
- "FunctionSelector",
  "evmdata",
  "fp-evm",
+ "functionselector",
  "gasometer",
  "num_enum",
  "pallet-balances",
@@ -2089,6 +2078,17 @@ name = "fuchsia-zircon-sys"
 version = "0.3.3"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "3dcaa9ae7725d12cdb85b3ad99a434db70b468c09ded17e012d86b5c1010f7a7"
+
+[[package]]
+name = "functionselector"
+version = "0.1.0"
+dependencies = [
+ "num_enum",
+ "proc-macro2",
+ "quote",
+ "sha3 0.8.2",
+ "syn",
+]
 
 [[package]]
 name = "funty"

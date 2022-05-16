@@ -1,5 +1,5 @@
 [package]
-name = "FunctionSelector"
+name = "functionselector"
 version = "0.1.0"
 edition = "2021"
 
