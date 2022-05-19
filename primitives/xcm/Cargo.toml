@@ -1,0 +1,14 @@
+[package]
+name = "xcm-primitives"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+frame-support = { version = "4.0.0-dev", git = "https://github.com/paritytech/substrate", branch = "master", default-features = false }
+sp-runtime = { version = "6.0.0", git = "https://github.com/paritytech/substrate", branch = "master", default-features = false }
+sp-std = { version = "4.0.0", git = "https://github.com/paritytech/substrate", branch = "master", default-features = false }
+
+orml-traits = { git = "https://github.com/purestake/open-runtime-module-library", default-features = false }
+xcm = { git = "https://github.com/paritytech/polkadot", default-features = false }
+xcm-builder = { git = "https://github.com/paritytech/polkadot", default-features = false }
+xcm-executor = { git = "https://github.com/paritytech/polkadot", default-features = false }

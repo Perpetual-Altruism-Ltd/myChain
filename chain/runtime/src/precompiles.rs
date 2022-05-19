@@ -6,6 +6,7 @@ use pallet_evm_precompile_sha3fips::Sha3FIPS256;
 use pallet_evm_precompile_simple::{ECRecover, ECRecoverPublicKey, Identity, Ripemd160, Sha256};
 
 use example::ExamplePrecompile;
+//use xcm_transactor::XcmTransactorWrapper;
 
 
 pub struct MyChainPrecompiles<R>(PhantomData<R>);
