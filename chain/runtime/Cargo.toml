@@ -15,7 +15,10 @@ targets = ["x86_64-unknown-linux-gnu"]
 default-features = false
 path = '../precompiles/example'
 
+
+
 [dependencies]
+gasometer = {path = "../precompiles/utils/gasometer", default-featuers = false}
 getrandom = { version = "0.2", features = ["js"] }
 serde = { version = "1.0.101", features = ["derive"], optional = true }
 

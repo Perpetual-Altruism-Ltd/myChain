@@ -1,12 +1,12 @@
 use pallet_evm::{Context, Precompile, PrecompileResult, PrecompileSet};
-use sp_core::H160;
-use sp_std::marker::PhantomData;
 use pallet_evm_precompile_modexp::Modexp;
 use pallet_evm_precompile_sha3fips::Sha3FIPS256;
 use pallet_evm_precompile_simple::{ECRecover, ECRecoverPublicKey, Identity, Ripemd160, Sha256};
+use sp_core::H160;
+use sp_std::marker::PhantomData;
 
 use example::ExamplePrecompile;
-
+use gasometer::Gasometer::revert;
 
 pub struct MyChainPrecompiles<R>(PhantomData<R>);
 
@@ -24,6 +24,7 @@ where
 			.collect()
 	}
 }
+
 impl<R> PrecompileSet for MyChainPrecompiles<R>
 where
 	R: pallet_evm::Config,
@@ -36,6 +37,17 @@ where
 		context: &Context,
 		is_static: bool,
 	) -> Option<PrecompileResult> {
+
+		// Filter known precompile addresses except Ethereum officials
+		if self.is_precompile(handle.code_address())
+			&& handle.code_address() > hash(9)
+			&& handle.code_address() != handle.context().address
+		{
+			return Some(Err(revert(
+				"cannot be called with DELEGATECALL or CALLCODE",
+			)));
+		}
+		
 		match address {
 			// Ethereum precompiles :
 			a if a == hash(1) => Some(ECRecover::execute(input, target_gas, context, is_static)),
@@ -45,8 +57,9 @@ where
 			a if a == hash(5) => Some(Modexp::execute(input, target_gas, context, is_static)),
 
 			// MyChain specific :
-			a if a == hash(777) => Some(ExamplePrecompile::execute(input, target_gas, context, is_static)),
-
+			a if a == hash(777) => Some(ExamplePrecompile::execute(
+				input, target_gas, context, is_static,
+			)),
 
 			// Non-MyChain specific nor Ethereum precompiles :
 			a if a == hash(1024) => {
