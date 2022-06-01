@@ -6,7 +6,6 @@ use sp_core::H160;
 use sp_std::marker::PhantomData;
 
 use example::ExamplePrecompile;
-use gasometer::Gasometer::revert;
 
 pub struct MyChainPrecompiles<R>(PhantomData<R>);
 
@@ -39,14 +38,14 @@ where
 	) -> Option<PrecompileResult> {
 
 		// Filter known precompile addresses except Ethereum officials
-		if self.is_precompile(handle.code_address())
+		/*if self.is_precompile(handle.code_address())
 			&& handle.code_address() > hash(9)
 			&& handle.code_address() != handle.context().address
 		{
 			return Some(Err(revert(
 				"cannot be called with DELEGATECALL or CALLCODE",
 			)));
-		}
+		}*/
 		
 		match address {
 			// Ethereum precompiles :
