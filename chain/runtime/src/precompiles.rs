@@ -5,6 +5,7 @@ use pallet_evm_precompile_simple::{ECRecover, ECRecoverPublicKey, Identity, Ripe
 use sp_core::H160;
 use sp_std::marker::PhantomData;
 
+use gasometer::Gasometer;
 use example::ExamplePrecompile;
 
 pub struct MyChainPrecompiles<R>(PhantomData<R>);
@@ -36,16 +37,19 @@ where
 		context: &Context,
 		is_static: bool,
 	) -> Option<PrecompileResult> {
+		
+		let mut gasometer = Gasometer::new(target_gas);
+		let gasometer = &mut gasometer;
 
 		// Filter known precompile addresses except Ethereum officials
-		/*if self.is_precompile(handle.code_address())
-			&& handle.code_address() > hash(9)
-			&& handle.code_address() != handle.context().address
+		if self.is_precompile(address)
+			&& address > hash(9)
+			&& address != context.address
 		{
-			return Some(Err(revert(
+			return Some(Err(gasometer.revert(
 				"cannot be called with DELEGATECALL or CALLCODE",
 			)));
-		}*/
+		}
 		
 		match address {
 			// Ethereum precompiles :
