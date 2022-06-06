@@ -1,0 +1,12 @@
+version: "3.9"
+
+services:
+  mychain:
+    volumes:
+      - ./data:/data
+    build:
+      context: ./
+      dockerfile: Dockerfile-mychain
+    environment:
+      - bootnodeIP=35.179.76.51
+      - nodename=MyChain-Docker-1

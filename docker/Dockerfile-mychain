@@ -1,0 +1,50 @@
+FROM rust:latest as build
+
+RUN apt update && apt install -y git clang curl libssl-dev llvm libudev-dev make
+RUN rustup update nightly
+RUN rustup target add wasm32-unknown-unknown --toolchain nightly
+
+RUN git clone https://github.com/Perpetual-Altruism-Ltd/myChain
+
+WORKDIR ./myChain
+
+RUN cargo build --release
+
+FROM rust:slim-bullseye
+
+LABEL maintainer "mario@mynft.com"
+LABEL description="Executable binary for myChain"
+
+RUN useradd -m -u 1000 -U -s /bin/sh -d /mychain mychain && \
+	mkdir -p /mychain/.local/share && \
+	mkdir /data && \
+	chown -R mychain:mychain /data && \
+	ln -s /data /mychain/.local/share/mychain && \
+	rm -rf /usr/bin /usr/sbin
+
+COPY --from=build --chown=mychain /myChain/myChainRaw.json /mychain/myChainRaw.json
+COPY --from=build --chown=mychain /myChain/target/release/mychain-node /mychain/mychain-node
+
+USER mychain
+
+RUN chmod uog+x /mychain/*
+
+EXPOSE 30333 30334 9933 9945 9615
+
+VOLUME ["/data"]
+
+CMD /mychain/mychain-node --base-path /data \
+	--bootnodes /ip4/$bootnodeIP/tcp/30333/p2p/12D3KooWS9NN5x9x4UwBtGZc3rawc3yavGtj2TxPjd3RY7jHZYx6 \
+	--chain /mychain/myChainRaw.json \
+	--execution wasm \
+	--name $nodename \
+	--pruning archive \
+	--port 30333 \
+	--rpc-cors=all \
+	--rpc-external \
+	--rpc-methods Unsafe \
+	--rpc-port 9933 \
+	--telemetry-url "wss://telemetry.polkadot.io/submit/ 0" \
+	--validator \
+	--ws-external \
+	--ws-port 9945
